@@ -1,9 +1,33 @@
+body {
+    background: url("img/background.jpg") no-repeat;
+}
 #searchContainer {
     font-size: 2em;
+    margin: 2% 0;
+    text-align: center;
+    padding: 0 .5em;
+    font-family: 'Baloo Bhaina',Helvetica,sans-serif;
+    box-shadow: 10px 10px 5px #888888;
+    background-color: red;
+}
+.pokemonProfile {
+    font-size: 1em;
     margin: 2% 0;
     text-align: center;
     padding: 1em;
     font-family: 'Baloo Bhaina',Helvetica,sans-serif;
     box-shadow: 10px 10px 5px #888888;
-    background-color: #00b0ff;
+    background-color: white;
+}
+.pokemonName {
+    font-size: 2.5em;
+}
+.pokemonPicture {
+    width: 126px;
+}
+#titleImg {
+    width: 10em;
+}
+.pokemonName {
+    text-transform: capitalize;
 }
