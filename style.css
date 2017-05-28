@@ -1,0 +1,9 @@
+#searchContainer {
+    font-size: 2em;
+    margin: 2% 0;
+    text-align: center;
+    padding: 1em;
+    font-family: 'Baloo Bhaina',Helvetica,sans-serif;
+    box-shadow: 10px 10px 5px #888888;
+    background-color: #00b0ff;
+}
