@@ -20,14 +20,14 @@ var PokemonSearcher = function() {
                     }
                     else if (i === response.results.length -1 && response.next){
                         listUrl = response.next;
+                        $("#display").empty();
                         self.pokemonFinder();
                     }
                     else if(pokemonCount === response.count){
                         self.clearSearch();
-                        $("#display").append($("<div>").text(pokemonInfo).addClass("pokemonProfile"));
+                        self.displayPokemon(pokemonInfo);
                         break;
                     }
-                    $("#display").empty();
                 }
             },
         });
@@ -45,25 +45,31 @@ var PokemonSearcher = function() {
         });
     };
     this.displayPokemon = function (pokemon) {
-        var pokemonProfile= $("<div>").addClass("pokemonProfile");
-        var pokemonPictureHolder = $("<div>").addClass("imgContainer");
-        var pokemonPicture = $("<img>").addClass("img-fluid");
-        if(pokemon.sprites.front_default) {
-            pokemonPicture.attr("src", pokemon.sprites.front_default).addClass("pokemonPicture");
-            pokemonPictureHolder.append(pokemonPicture);
+        var pokemonProfile = $("<div>").addClass("pokemonProfile");
+        if(pokemon.name) {
+            var pokemonPictureHolder = $("<div>").addClass("imgContainer");
+            var pokemonPicture = $("<img>").addClass("img-fluid");
+            if (pokemon.sprites.front_default) {
+                pokemonPicture.attr("src", pokemon.sprites.front_default).addClass("pokemonPicture");
+                pokemonPictureHolder.append(pokemonPicture);
+            }
+            var pokemonName = $("<div>").text(pokemon.name).addClass('pokemonName');
+            var pokemonHeight = $("<div>").text("Height: " + pokemon.height).addClass('pokemonHeight');
+            var pokemonWeight = $("<div>").text("Weight: " + pokemon.weight).addClass('pokemonWeight');
+            var pokemonStats = $("<div>").text("Stats: ").addClass("pokemonStats");
+            for (var i = pokemon.stats.length - 1; i >= 0; i--) {
+                pokemonStats.append($("<div>").text(pokemon.stats[i].stat.name + ': ' + pokemon.stats[i].base_stat));
+            }
+            var pokemonTypes = $("<div>").text("Type: ").addClass("pokemonType");
+            for (var j = 0; j < pokemon.types.length; j++) {
+                pokemonTypes.append(pokemon.types[j].type.name);
+            }
+            pokemonProfile.append(pokemonName, pokemonPictureHolder, pokemonTypes, pokemonHeight, pokemonWeight, pokemonStats);
         }
-        var pokemonName = $("<div>").text(pokemon.name).addClass('pokemonName');
-        var pokemonHeight = $("<div>").text("Height: " + pokemon.height).addClass('pokemonHeight');
-        var pokemonWeight = $("<div>").text("Weight: " + pokemon.weight).addClass('pokemonWeight');
-        var pokemonStats = $("<div>").text("Stats: ").addClass("pokemonStats");
-        for(var i = pokemon.stats.length -1; i >= 0; i--){
-            pokemonStats.append($("<div>").text(pokemon.stats[i].stat.name + ': ' + pokemon.stats[i].base_stat));
+        else{
+            var noPokemon = $("<div>").text(pokemon).addClass('pokemonName');
+            pokemonProfile.append(pokemonName);
         }
-        var pokemonTypes = $("<div>").text("Type: ").addClass("pokemonType");
-        for(var j = 0; j < pokemon.types.length; j++){
-            pokemonTypes.append(pokemon.types[j].type.name);
-        }
-        pokemonProfile.append(pokemonName, pokemonPictureHolder, pokemonTypes, pokemonHeight, pokemonWeight, pokemonStats);
         $("#display").append(pokemonProfile);
     };
     this.clearSearch = function () {
@@ -89,5 +95,8 @@ $( function() {
 
 $(document).ready(function() {
     var pokemonSearch = new PokemonSearcher;
-    $("#searchButton").on("click", pokemonSearch.pokemonFinder);
+    $("#searchButton").on("click", function(){
+        $("#display").empty();
+        pokemonSearch.pokemonFinder();
+    });
 });
