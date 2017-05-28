@@ -7,22 +7,30 @@ body {
 }
 #searchContainer {
     font-size: 2em;
-    margin: 2% 0;
+    border-radius: 50px 50px 0 0;
+    margin-top: 2%;
     text-align: center;
     padding: 0 .5em;
     font-family: 'Baloo Bhaina',Helvetica,sans-serif;
-    -webkit-box-shadow: 10px 10px 5px #888888;
-    box-shadow: 10px 10px 5px #888888;
+    -webkit-box-shadow: 5px 5px 5px #888888;
+    box-shadow: 5px 5px 5px #888888;
     background-color: red;
 }
-.pokemonProfile {
+#searchButton {
+    margin: 2%;
     font-size: 1em;
-    margin: 2% 0;
+}
+#display {
+    text-transform: capitalize;
+    min-height: 6em;
+    font-size: 1em;
+    margin-bottom: 2%;
+    border-radius: 0 0 50px 50px;
     text-align: center;
     padding: 1em;
     font-family: 'Baloo Bhaina',Helvetica,sans-serif;
-    -webkit-box-shadow: 10px 10px 5px #888888;
-    box-shadow: 10px 10px 5px #888888;
+    -webkit-box-shadow: 5px 5px 5px #888888;
+    box-shadow: 5px 5px 5px #888888;
     background-color: white;
 }
 .pokemonName {
@@ -33,7 +41,4 @@ body {
 }
 #titleImg {
     width: 10em;
-}
-.pokemonName {
-    text-transform: capitalize;
 }

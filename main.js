@@ -3,6 +3,7 @@ var PokemonSearcher = function() {
     var listUrl = "http://pokeapi.co/api/v2/pokemon/";
     var pokemonCount = 0;
     this.pokemonFinder = function () {
+        $("#display").append($("<div>").text("Loading...").addClass("pokemonProfile"));
         $.ajax({
             dataType: "JSON",
             method: "GET",
@@ -25,16 +26,19 @@ var PokemonSearcher = function() {
                         self.clearSearch();
                         $("#display").append($("<div>").text(pokemonInfo).addClass("pokemonProfile"));
                     }
+                    $("#display").empty();
                 }
             },
         });
     };
     this.getPokemonData = function (url) {
+        $("#display").append($("<div>").text("Loading...").addClass("pokemonProfile"));
         $.ajax({
             dataType: "JSON",
             method: "GET",
             url: url,
             success: function (response) {
+                $("#display").empty();
                 self.displayPokemon(response)
             },
         });
