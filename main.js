@@ -1,6 +1,6 @@
 var PokemonSearcher = function() {
     var self = this;
-    var listUrl = "http://pokeapi.co/api/v2/pokemon/";
+    var listUrl = "https://pokeapi.co/api/v2/pokemon/";
     var pokemonCount = 0;
     this.pokemonFinder = function () {
         $("#display").append($("<div>").text("Loading...").addClass("pokemonProfile"));
@@ -69,7 +69,7 @@ var PokemonSearcher = function() {
     this.clearSearch = function () {
         $("#searchInput").val('');
         pokemonCount = 0;
-        listUrl = "http://pokeapi.co/api/v2/pokemon/";
+        listUrl = "https://pokeapi.co/api/v2/pokemon/";
     }
 };
 
