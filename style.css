@@ -42,3 +42,6 @@ body {
 #titleImg {
     width: 10em;
 }
+.ui-widget {
+    font-family: 'Baloo Bhaina',Helvetica,sans-serif;
+}
