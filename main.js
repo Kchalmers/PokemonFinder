@@ -26,7 +26,6 @@ var PokemonSearcher = function() {
                     else if(pokemonCount === response.count){
                         self.clearSearch();
                         self.displayPokemon(pokemonInfo);
-                        break;
                     }
                 }
             },
@@ -61,20 +60,22 @@ var PokemonSearcher = function() {
                 pokemonStats.append($("<div>").text(pokemon.stats[i].stat.name + ': ' + pokemon.stats[i].base_stat));
             }
             var pokemonTypes = $("<div>").text("Type: ").addClass("pokemonType");
-            for (var j = 0; j < pokemon.types.length; j++) {
-                pokemonTypes.append(pokemon.types[j].type.name);
+            pokemonTypes.append(pokemon.types[0].type.name);
+            for (var j = 1; j < pokemon.types.length; j++) {
+                pokemonTypes.append(", " + pokemon.types[j].type.name);
             }
             pokemonProfile.append(pokemonName, pokemonPictureHolder, pokemonTypes, pokemonHeight, pokemonWeight, pokemonStats);
         }
-        else{
+        else {
             var noPokemon = $("<div>").text(pokemon).addClass('pokemonName');
-            pokemonProfile.append(pokemonName);
+            pokemonProfile.append(noPokemon);
         }
         $("#display").append(pokemonProfile);
     };
     this.clearSearch = function () {
         $("#searchInput").val('');
         pokemonCount = 0;
+        $("#display").empty();
         listUrl = "https://pokeapi.co/api/v2/pokemon/";
     }
 };
